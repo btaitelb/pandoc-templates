@@ -44,8 +44,13 @@ $if(CJKmainfont)$
     \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
 $endif$
 \fi
+
 % use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% and fall back to textcomp
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{
+  \IfFileExists{textcomp.sty}{\usepackage{textcomp}}{}
+}
+
 % use microtype if available
 \IfFileExists{microtype.sty}{%
 \usepackage{microtype}
